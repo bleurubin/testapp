@@ -62,7 +62,7 @@ dependencies {
     testRuntime "org.seleniumhq.selenium:selenium-remote-driver:3.6.0"
     testRuntime "org.seleniumhq.selenium:selenium-api:3.6.0"
 
-    // provided "org.grails.plugins:embedded-mongodb:1.0.1"
+    provided "org.grails.plugins:embedded-mongodb:1.0.1"
 }
 
 bootRun {

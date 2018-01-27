@@ -87,3 +87,8 @@ endpoints:
 
 ---
 environments:
+  test:
+    grails:
+      mongodb:
+        databaseName: 'test'
+        port: 27018
