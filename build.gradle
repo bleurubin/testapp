@@ -47,13 +47,11 @@ dependencies {
     compile "org.grails.plugins:async"
     compile "org.grails.plugins:scaffolding"
     compile "org.grails.plugins:events"
-    compile "org.grails.plugins:hibernate5"
-    compile "org.hibernate:hibernate-core:5.1.5.Final"
     compile "org.grails.plugins:gsp"
     console "org.grails:grails-console"
+    compile "org.grails.plugins:mongodb"
     profile "org.grails.profiles:web"
     runtime "org.glassfish.web:el-impl:2.1.2-b03"
-    runtime "com.h2database:h2"
     runtime "org.apache.tomcat:tomcat-jdbc"
     runtime "com.bertramlabs.plugins:asset-pipeline-grails:2.14.6"
     testCompile "org.grails:grails-gorm-testing-support"
@@ -63,6 +61,8 @@ dependencies {
     testRuntime "org.seleniumhq.selenium:selenium-firefox-driver:3.6.0"
     testRuntime "org.seleniumhq.selenium:selenium-remote-driver:3.6.0"
     testRuntime "org.seleniumhq.selenium:selenium-api:3.6.0"
+
+    provided "org.grails.plugins:embedded-mongodb:1.0.1"
 }
 
 bootRun {
