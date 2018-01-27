@@ -1,9 +1,7 @@
 package testapp
 
-class Foo {
+class Car {
     String name
-    Bar bar
-    Car car
 
     static constraints = {
     }
