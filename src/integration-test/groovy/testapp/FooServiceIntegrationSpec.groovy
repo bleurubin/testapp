@@ -15,6 +15,7 @@ class FooServiceIntegrationSpecSpec extends Specification {
     }
   }
 
+ /*
   void "test querying Foos and Bars"() {
     given:
     setupData()
@@ -77,7 +78,7 @@ class FooServiceIntegrationSpecSpec extends Specification {
     then: "it is quicker cuz the foos have been marshalled"
     time < 10
   }
-
+  */
   void "test referencing bar is slower"() {
     given:
     setupData()
