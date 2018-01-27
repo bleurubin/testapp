@@ -13,10 +13,13 @@ class DeepReferenceIntegrationSpec extends Specification {
             Car car = new Car(name: 'car').save(flush: true, failOnError: true)
             Bar bar = new Bar(name: 'bar', car: car).save(flush: true, failOnError: true)
             Foo foo = new Foo(name: 'foo', bar: bar, car: car).save(flush: true, failOnError: true)
-            // println "car name: ${car.name}"
-            // println "bar name: ${bar.name} car name: ${bar.car.name}"
-            // println "foo name: ${foo.name} bar name: ${foo.bar.name}  car name: ${foo.bar.car.name}"
         }
+    }
+
+    def cleanup() {
+        Foo.where { name == 'foo' }.deleteAll()
+        Bar.where { name == 'bar' }.deleteAll()
+        Car.where { name == 'car' }.deleteAll()
     }
 
     void "test referencing bar is slower"() {
@@ -24,9 +27,7 @@ class DeepReferenceIntegrationSpec extends Specification {
         long start = System.currentTimeMillis()
         List<Foo> foos = Foo.findAll()
         for (Foo foo in foos) {
-            Bar bar = foo.bar
-            Car car = bar.car
-            if (car?.name == 'john') {
+            if (foo.bar.car.name == 'john') {
                 println "found john"
             }
         }
