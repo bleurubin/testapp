@@ -7,21 +7,21 @@ import spock.lang.Specification
 @Integration
 @Rollback
 class DeepReferenceIntegrationSpec extends Specification {
-  void "test referencing bar is slower"() {
-    given:
-    SetupData.setupData()
+    void "test referencing bar is slower"() {
+        given:
+        SetupData.setupData()
 
-    when: "we find all foos and reference the name of each child bar"
-    long start = System.currentTimeMillis()
-    List<Foo> foos = Foo.findAll()
-    for (Foo foo in foos) {
-      if (foo.bar.name == 'john') {
-        println "found john"
-      }
+        when: "we find all foos and reference the name of each child bar"
+        long start = System.currentTimeMillis()
+        List<Foo> foos = Foo.findAll()
+        for (Foo foo in foos) {
+            if (foo.bar.name == 'john') {
+                println "found john"
+            }
+        }
+        def time = System.currentTimeMillis() - start
+
+        then:
+        println "deep reference time: $time"
     }
-    def time = System.currentTimeMillis() - start
-
-    then: "the query took longer than 400ms"
-    println "deep reference time: $time"
-  }
 }
