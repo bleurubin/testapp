@@ -7,10 +7,15 @@ import spock.lang.Specification
 @Integration
 @Rollback
 class ShallowReferenceIntegrationSpec extends Specification {
-    void "test referencing only foo.name"() {
-        given:
-        SetupData.setupData()
 
+    def setup() {
+        for(int i=0; i< 1000; i++) {
+            Bar bar = new Bar(name: 'bar').save(flush: true, failOnError: true)
+            new Foo(name: 'foo', bar: bar).save(flush: true, failOnError: true)
+        }
+    }
+
+    void "test referencing only foo.name"() {
         when: "we find all foos and reference the name of each foo"
         long start = System.currentTimeMillis()
         List<Foo> foos = Foo.findAll()
@@ -21,7 +26,7 @@ class ShallowReferenceIntegrationSpec extends Specification {
         }
         def time = System.currentTimeMillis() - start
 
-        then: "the query took less than 70ms"
+        then:
         println "shallow reference time: $time"
     }
 }
