@@ -1,8 +1,8 @@
 package testapp
 
 class Bar {
-  String name
+    String name
 
-  static constraints = {
-  }
+    static constraints = {
+    }
 }
